@@ -175,7 +175,7 @@ class Project
     /**
      * @return string
      */
-    public function getResponsibilities(): string
+    public function getResponsibilities()
     {
         return $this->responsibilities;
     }
@@ -195,7 +195,7 @@ class Project
     /**
      * @return string
      */
-    public function getDescription(): string
+    public function getDescription()
     {
         return $this->description;
     }
@@ -215,7 +215,7 @@ class Project
     /**
      * @return \DateTime
      */
-    public function getStartDate(): \DateTime
+    public function getStartDate()
     {
         return $this->startDate;
     }
@@ -235,7 +235,7 @@ class Project
     /**
      * @return \DateTime
      */
-    public function getEndDate(): \DateTime
+    public function getEndDate()
     {
         return $this->endDate;
     }
