@@ -4,6 +4,23 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+  app.model_describer.employee:
+    class: AppBundle\StashOdm\EmployeeDescriber
+    tags:
+      - { name: stash_odm.model }
+
+  app.model_describer.skill:
+    class: AppBundle\StashOdm\SkillDescriber
+    tags:
+      - { name: stash_odm.model }
+
+  app.model_describer.employee.project:
+    class: AppBundle\StashOdm\Employee\ProjectDescriber
+    tags:
+      - { name: stash_odm.model }
+
+  app.model_describer.employee.skill:
+    class: AppBundle\StashOdm\Employee\SkillDescriber
+    tags:
+      - { name: stash_odm.model }
