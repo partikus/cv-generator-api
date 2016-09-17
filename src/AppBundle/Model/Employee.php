@@ -6,9 +6,9 @@ namespace AppBundle\Model;
 
 use AppBundle\Model\Employee\Details;
 use AppBundle\Model\Employee\Email;
-use AppBundle\Model\Employee\Languages;
-use AppBundle\Model\Employee\Projects;
-use AppBundle\Model\Employee\Skills;
+use AppBundle\Model\Employee\Language;
+use AppBundle\Model\Employee\Project;
+use AppBundle\Model\Employee\Skill;
 
 class Employee
 {
@@ -25,9 +25,11 @@ class Employee
     public function __construct(
         string $firstName, string $lastName,
         string $username, Email $email,
-        string $jobTitle, Skills $skills,
-        Details $details, Languages $languages,
-        Projects $projects
+        string $jobTitle,
+        Details $details,
+        array $skills = [],
+        array $languages = [],
+        array $projects = []
     ) {
         $this->firstName = $firstName;
         $this->lastName  = $lastName;
@@ -81,25 +83,25 @@ class Employee
     }
 
     /**
-     * @return Skills
+     * @return array|Skill[]
      */
-    public function getSkills(): Skills
+    public function getSkills(): array
     {
         return $this->skills;
     }
 
     /**
-     * @return Languages
+     * @return array|Language[]
      */
-    public function getLanguages(): Languages
+    public function getLanguages(): array
     {
         return $this->languages;
     }
 
     /**
-     * @return Projects
+     * @return array|Project[]
      */
-    public function getProjects(): Projects
+    public function getProjects(): array
     {
         return $this->projects;
     }
