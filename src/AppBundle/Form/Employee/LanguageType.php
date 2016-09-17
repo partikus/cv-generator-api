@@ -2,10 +2,12 @@
 
 namespace AppBundle\Form\Employee;
 
+use AppBundle\Entity\Language;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class LanguageType extends AbstractType
@@ -23,11 +25,13 @@ class LanguageType extends AbstractType
                 'constraints' => [
                     new NotBlank(),
                 ]
-            ])
-            ->add('level', IntegerType::class, [
-                'constraints' => [
-                    new NotBlank(),
-                ]
             ]);
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => Language::class
+        ]);
     }
 }

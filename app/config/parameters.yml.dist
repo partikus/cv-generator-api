@@ -17,8 +17,3 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
-
-    #ODM`
-    stash_odm_server: mongodb://mongo:27017
-    stash_odm_options: ~
-    stash_odm_driver_options: ~
