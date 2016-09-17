@@ -4,8 +4,6 @@ declare (strict_types = 1);
 
 namespace AppBundle\Model\Employee;
 
-use AppBundle\Model\Skills;
-
 class Project
 {
     private $company;

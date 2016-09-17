@@ -6,7 +6,7 @@ namespace AppBundle\Model;
 
 use AppBundle\Model\Exception\InvalidSkillTypeException;
 
-class SkillType
+class Type
 {
     const TYPE_LANGUAGE = 1;
     const TYPE_FRAMEWORK = 2;
