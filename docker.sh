@@ -21,6 +21,7 @@ function buildImages {
     docker build -t "${NAME}:${VERSION}-php7xdebug" --build-arg USERID="$USERID" docker/php7xdebug
     docker build -t "${NAME}:${VERSION}-php56" --build-arg USERID="$USERID" docker/php56
     docker build -t "${NAME}:${VERSION}-nginx" docker/nginx
+    docker build -t "${NAME}:${VERSION}-beanstalkd" docker/beanstalkd
 }
 
 function runBuild {
