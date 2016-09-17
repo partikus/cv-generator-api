@@ -1,7 +1,8 @@
 <?php
 
-namespace AppBundle\Model\Employee;
+declare (strict_types = 1);
 
+namespace AppBundle\Model\Employee;
 
 class InvalidSkillTypeException
 {

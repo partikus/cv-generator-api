@@ -1,17 +1,12 @@
-# this is an example of the Uber API
-# as a demonstration of an API spec in YAML
 swagger: '2.0'
 info:
   title: CV Generator
   description: The simplest way to generate beatuful CV.
   version: "0.1.0"
-# the domain of the service
 host: cv.pgs-soft.com
-# array of all schemes that your API supports
 schemes:
   - http
   - https
-# will be prefixed to all paths
 basePath: /v1
 produces:
   - application/json
@@ -73,12 +68,23 @@ definitions:
         type: string
       jobTitle:
         type: string
+      details:
+        $ref: '#/definitions/Details'
       skills:
         $ref: '#/definitions/Skills'
       languages:
         $ref: '#/definitions/Languages'
       projects:
         $ref: '#/definitions/Projects'
+  Details:
+    type: object
+    properties:
+      experience:
+        type: string
+      eduction:
+        type: string
+      hobbies:
+        type: string
   Skills:
     type: array
     items:
@@ -91,12 +97,12 @@ definitions:
       startDate:
         type: string
         format: date-time
-      endDate:
-        type: string
-        format: date-time
       lastUsage:
         type: string
         format: date-time
+      level:
+        type: number
+        format: int32
   BaseSkill:
     type: object
     properties:

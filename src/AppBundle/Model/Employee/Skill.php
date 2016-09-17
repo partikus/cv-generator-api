@@ -10,20 +10,17 @@ class Skill
 {
     private $skill;
     private $startDate;
-    private $endDate;
     private $lastUsage;
     private $level;
 
     public function __construct(
         BaseSkill $skill,
         \DateTimeImmutable $startDate,
-        \DateTimeImmutable $endDate,
         \DateTimeImmutable $lastUsage,
         int $level
     ) {
         $this->skill = $skill;
         $this->startDate = $startDate;
-        $this->endDate = $endDate;
         $this->lastUsage = $lastUsage;
         $this->level = $level;
     }
@@ -42,14 +39,6 @@ class Skill
     public function getStartDate(): \DateTimeImmutable
     {
         return $this->startDate;
-    }
-
-    /**
-     * @return \DateTimeImmutable
-     */
-    public function getEndDate(): \DateTimeImmutable
-    {
-        return $this->endDate;
     }
 
     /**
