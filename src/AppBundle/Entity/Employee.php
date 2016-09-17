@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -247,7 +248,7 @@ class Employee
         $this->skills->removeElement($employeeSkill);
     }
 
-    public function getSkills() : ArrayCollection
+    public function getSkills() : Collection
     {
         return $this->skills;
     }
@@ -255,7 +256,7 @@ class Employee
     /**
      * @return Language
      */
-    public function getLanguages(): ArrayCollection
+    public function getLanguages(): Collection
     {
         return $this->languages;
     }
