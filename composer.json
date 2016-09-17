@@ -1,7 +1,8 @@
 {
-    "name": "michalszczur/api2",
-    "license": "proprietary",
+    "name": "cvgenerator/api",
+    "license": "MIT",
     "type": "project",
+    "version": "0.1.0",
     "autoload": {
         "psr-4": {
             "": "src/"
@@ -16,6 +17,12 @@
             "Tests\\": "tests/"
         }
     },
+    "repositories": [
+      {
+        "type": "git",
+        "url": "https://github.com/partikus/stash"
+      }
+    ],
     "require": {
         "php": ">=5.5.9",
         "symfony/symfony": "3.1.*",
@@ -27,7 +34,8 @@
         "symfony/polyfill-apcu": "^1.0",
         "sensio/distribution-bundle": "^5.0",
         "sensio/framework-extra-bundle": "^3.0.2",
-        "incenteev/composer-parameter-handler": "^2.0"
+        "incenteev/composer-parameter-handler": "^2.0",
+        "potfur/stash": "dev-dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
