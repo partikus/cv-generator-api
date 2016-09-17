@@ -8,8 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * EmployeeSkill
  *
- * @ORM\Table(name="employee_skill")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\EmployeeSkillRepository")
+ * @ORM\Table(name="employee_language")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\EmployeeLanguageRepository")
  */
 class EmployeeLanguage
 {
@@ -30,7 +30,7 @@ class EmployeeLanguage
     private $level;
 
     /**
-     * @var Skill
+     * @var Language
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Language")
      * @ORM\JoinColumn(name="language_id", referencedColumnName="id")
      */
@@ -57,8 +57,7 @@ class EmployeeLanguage
      * Set level
      *
      * @param integer $level
-     *
-     * @return EmployeeSkill
+     * @return EmployeeLanguage
      */
     public function setLevel($level) : self
     {
@@ -78,9 +77,9 @@ class EmployeeLanguage
     }
 
     /**
-     * @return Skill
+     * @return Language
      */
-    public function getLanguage(): Skill
+    public function getLanguage()
     {
         return $this->language;
     }
@@ -90,7 +89,7 @@ class EmployeeLanguage
      *
      * @return $this
      */
-    public function setLanguage(Skill $language)
+    public function setLanguage(Language $language)
     {
         $this->language = $language;
 

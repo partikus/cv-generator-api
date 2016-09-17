@@ -94,10 +94,8 @@ class ApiController extends Controller
     {
         $content = $request->getContent();
         if (empty($content)) {
-            // form
             $data = $request->request->all();
         } else {
-            // json
             $data = json_decode($content, true);
         }
 

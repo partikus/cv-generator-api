@@ -8,8 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * EmployeeSkill
  *
- * @ORM\Table(name="employee_language")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\EmployeeLanguageRepository")
+ * @ORM\Table(name="employee_skill")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\EmployeeSkillRepository")
  */
 class EmployeeSkill
 {
@@ -142,7 +142,7 @@ class EmployeeSkill
     /**
      * @return Skill
      */
-    public function getSkill(): Skill
+    public function getSkill()
     {
         return $this->skill;
     }
@@ -162,7 +162,7 @@ class EmployeeSkill
     /**
      * @return Employee
      */
-    public function getEmployee(): Employee
+    public function getEmployee()
     {
         return $this->employee;
     }

@@ -55,7 +55,29 @@ class Employee
      *
      * @ORM\Column(name="jobTitle", type="string", length=30)
      */
-    private $jobTitle;
+    private $jobTitle = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="experience", type="text")
+     */
+    private $experience = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="education", type="text")
+     */
+    private $education = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="hobbies", type="text")
+     */
+    private $hobbies = '';
+
 
     /**
      * @var ArrayCollection|EmployeeSkill[]
@@ -79,7 +101,7 @@ class Employee
     {
         $this->skills    = new ArrayCollection();
         $this->languages = new ArrayCollection();
-        $this->projects = new ArrayCollection();
+        $this->projects  = new ArrayCollection();
     }
 
     /**
@@ -212,9 +234,10 @@ class Employee
         return $this->jobTitle;
     }
 
-    public function addSkill(EmployeeSkill $employeeSkill) : void
+    public function addSkill(EmployeeSkill $employeeSkill)
     {
-        if (!$this->skills->contains($employeeSkill)) {
+        if ( ! $this->skills->contains($employeeSkill)) {
+            $employeeSkill->setEmployee($this);
             $this->skills->add($employeeSkill);
         }
     }
@@ -239,7 +262,11 @@ class Employee
 
     public function addLanguage(EmployeeLanguage $language)
     {
-        if (!$this->languages->contains($language)) {
+        $exists = $this->languages->filter(function(EmployeeLanguage $item) use ($language) {
+            return $item->getLanguage()->getIso3() === $language->getLanguage()->getIso3();
+        });
+
+        if ( count($exists) === 0 ) {
             $language->setEmployee($this);
             $this->languages->add($language);
         }
@@ -257,7 +284,7 @@ class Employee
 
     public function addProject(Project $project)
     {
-        if (!$this->projects->contains($project)) {
+        if ( ! $this->projects->contains($project)) {
             $project->setEmployee($this);
             $this->projects->add($project);
         }
@@ -266,5 +293,65 @@ class Employee
     public function removeProject(Project $project)
     {
         $this->projects->removeElement($project);
+    }
+
+    /**
+     * @return string
+     */
+    public function getExperience(): string
+    {
+        return $this->experience;
+    }
+
+    /**
+     * @param string $experience
+     *
+     * @return $this
+     */
+    public function setExperience($experience)
+    {
+        $this->experience = $experience;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEducation(): string
+    {
+        return $this->education;
+    }
+
+    /**
+     * @param string $education
+     *
+     * @return $this
+     */
+    public function setEducation($education)
+    {
+        $this->education = $education;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHobbies(): string
+    {
+        return $this->hobbies;
+    }
+
+    /**
+     * @param string $hobbies
+     *
+     * @return $this
+     */
+    public function setHobbies($hobbies)
+    {
+        $this->hobbies = $hobbies;
+
+        return $this;
     }
 }
