@@ -98,11 +98,17 @@ definitions:
       details:
         $ref: '#/definitions/Details'
       skills:
-        $ref: '#/definitions/Skills'
+        type: array
+        items:
+          $ref: '#/definitions/Skill'
       languages:
-        $ref: '#/definitions/Languages'
+        type: array
+        items:
+          $ref: '#/definitions/Language'
       projects:
-        $ref: '#/definitions/Projects'
+        type: array
+        items:
+          $ref: '#/definitions/Project'
   Details:
     type: object
     properties:
@@ -112,10 +118,6 @@ definitions:
         type: string
       hobbies:
         type: string
-  Skills:
-    type: array
-    items:
-      $ref: '#/definitions/Skill'
   Skill:
     type: object
     properties:
@@ -139,10 +141,6 @@ definitions:
         type: string
       url:
         type: string
-  Languages:
-    type: array
-    items:
-      $ref: '#/definitions/Language'
   Language:
     type: object
     properties:
@@ -172,10 +170,6 @@ definitions:
       endDate:
         type: string
         format: date-time
-  Projects:
-    type: array
-    items:
-      $ref: '#/definitions/Project'
   Error:
     type: object
     properties:
