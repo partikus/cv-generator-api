@@ -1,6 +1,6 @@
 <?php
 
-namespace ClearCode\StashODMBundle\DependencyInjection;
+namespace ClearCode\StashODMBundle\DependencyInjection\CompilerPass;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

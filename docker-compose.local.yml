@@ -39,6 +39,3 @@ swagger:
 rabbit:
   ports:
     - "8444:15672"
-  environment:
-    RABBITMQ_DEFAULT_USER: user
-    RABBITMQ_DEFAULT_PASS: password
