@@ -8,7 +8,7 @@ class Project
 {
     private $company;
     private $role;
-    private $responsibillites;
+    private $responsibilities;
     private $skills;
     private $description;
     private $startDate;
@@ -17,7 +17,7 @@ class Project
     public function __construct(
         string $company,
         string $role,
-        string $responsibillites,
+        string $responsibilities,
         Skills $skills,
         string $description,
         \DateTimeImmutable $startDate,
@@ -26,7 +26,7 @@ class Project
     {
         $this->company          = $company;
         $this->role             = $role;
-        $this->responsibillites = $responsibillites;
+        $this->responsibilities = $responsibilities;
         $this->skills           = $skills;
         $this->description      = $description;
         $this->startDate        = $startDate;
@@ -52,9 +52,9 @@ class Project
     /**
      * @return string
      */
-    public function getResponsibillites(): string
+    public function getResponsibilities(): string
     {
-        return $this->responsibillites;
+        return $this->responsibilities;
     }
 
     /**
