@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Form\Employee\LanguageType;
+use AppBundle\Form\Employee\EmployeeLanguageType;
 use AppBundle\Form\EmployeeType;
 use AppBundle\Model\Employee\Language;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -117,8 +117,11 @@ class EmployeeController extends ApiController
             return $response;
         }
 
-        $data = $form->getData();
-        // todo: save
+
+        $entity = $form->getData();
+        $em       = $this->get('doctrine.orm.default_entity_manager');
+        $em->persist($entity);
+        $em->flush();
 
         return $this->success([], Response::HTTP_CREATED);
     }

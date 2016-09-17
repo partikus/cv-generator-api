@@ -2,36 +2,29 @@
 
 namespace AppBundle\Form\Employee;
 
+use AppBundle\Entity\EmployeeLanguage;
 use AppBundle\Entity\Language;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\NotBlank;
 
-class LanguageType extends AbstractType
+class EmployeeLanguageType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, [
-                'constraints' => [
-                    new NotBlank(),
-                ]
-            ])
-            ->add('iso3', TextType::class, [
-                'required' => true,
-                'constraints' => [
-                    new NotBlank(),
-                ]
+            ->add('level', IntegerType::class)
+            ->add('language', EntityType::class, [
+                'class' => Language::class
             ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Language::class
+            'data_class' => EmployeeLanguage::class
         ]);
     }
 }

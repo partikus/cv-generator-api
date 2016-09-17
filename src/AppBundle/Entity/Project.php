@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -74,6 +75,20 @@ class Project
      * @ORM\JoinColumn(name="employee_id", referencedColumnName="id")
      */
     private $employee;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Skill")
+     * @ORM\JoinTable(name="project_skill",
+     *      joinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="skill_id", referencedColumnName="id", unique=true)}
+     * )
+     */
+    private $skills;
+
+    public function __construct()
+    {
+        $this->skills = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -256,5 +271,21 @@ class Project
 
         return $this;
     }
-}
 
+    public function getSkills()
+    {
+        return $this->skills;
+    }
+
+    public function addSkill(Skill $skill)
+    {
+        if (!$this->skills->contains($skill)) {
+            $this->skills->add($skill);
+        }
+    }
+
+    public function removeSkill(Skill $skill)
+    {
+        $this->skills->removeElement($skill);
+    }
+}

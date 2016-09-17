@@ -3,7 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Language;
-use AppBundle\Form\Employee\LanguageType;
+use AppBundle\Form\Employee\EmployeeLanguageType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -41,7 +41,7 @@ class LanguageController extends ApiController
      */
     public function createAction(Request $request)
     {
-        $form = $this->createForm(LanguageType::class);
+        $form = $this->createForm(EmployeeLanguageType::class);
         $this->handleRequest($request, $form);
 
         if ( ! $form->isValid()) {
