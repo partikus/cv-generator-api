@@ -4,14 +4,9 @@ php:
   environment:
     SYMFONY_ENV: dev
 
-mysql:
-  environment:
-    MYSQL_DATABASE: ${PROJECT_NAME}
+mongo:
   volumes:
-    - ./data:/var/lib/mysql
-
-node:
-  command: /entrypoint.sh watch
+    - ./data:/data/db
 
 nginx:
   image: "${APP_NAME}:${APP_VERSION}-nginx"
