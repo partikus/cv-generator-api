@@ -2,9 +2,9 @@
 
 namespace AppBundle\Form\Employee;
 
-use Doctrine\DBAL\Types\DateTimeType;
-use Doctrine\DBAL\Types\IntegerType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -15,19 +15,19 @@ class SkillType extends AbstractType
     {
         $builder
             ->add('startDate', DateTimeType::class, [
-                'constraint' => [
+                'constraints' => [
                     new NotBlank(),
                     new DateTime(),
                 ]
             ])
             ->add('lastUsage', DateTimeType::class, [
-                'constraint' => [
+                'constraints' => [
                     new NotBlank(),
                     new DateTime(),
                 ]
             ])
             ->add('level', IntegerType::class, [
-                'constraint' => [
+                'constraints' => [
                     new NotBlank(),
                 ]
             ]);

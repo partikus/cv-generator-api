@@ -2,8 +2,8 @@
 
 namespace AppBundle\Form;
 
-use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -14,45 +14,45 @@ class EmployeeType extends AbstractType
     {
         $builder
             // Employee
-            ->add('first_name', TextType::class, [
-                'constraint' => [
+            ->add('firstName', TextType::class, [
+                'constraints' => [
                     new NotBlank(),
                 ]
             ])
-            ->add('last_name', TextType::class, [
-                'constraint' => [
+            ->add('lastName', TextType::class, [
+                'constraints' => [
                     new NotBlank(),
                 ]
             ])
             ->add('username', TextType::class, [
-                'constraint' => [
+                'constraints' => [
                     new NotBlank(),
                 ]
             ])
-            ->add('job_title', TextType::class, [
-                'constraint' => [
+            ->add('jobTitle', TextType::class, [
+                'constraints' => [
                     new NotBlank(),
                 ]
             ])
             // Details
             ->add('experience', TextType::class, [
-                'constraint' => [
+                'constraints' => [
                     new NotBlank(),
                 ]
             ])
             ->add('education', TextType::class, [
-                'constraint' => [
+                'constraints' => [
                     new NotBlank(),
                 ]
             ])
             ->add('hobbies', TextType::class, [
-                'constraint' => [
+                'constraints' => [
                     new NotBlank(),
                 ]
             ])
             // Email
             ->add('email', TextType::class, [
-                'constraint' => [
+                'constraints' => [
                     new NotBlank(),
                     new Email(),
                 ]
