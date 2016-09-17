@@ -6,20 +6,30 @@ use Doctrine\DBAL\Types\DateTimeType;
 use Doctrine\DBAL\Types\IntegerType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
-class SkillForm extends AbstractType
+class SkillType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('startDate', DateTimeType::class, [
-                'required' => true,
+                'constraint' => [
+                    new NotBlank(),
+                    new DateTime(),
+                ]
             ])
             ->add('lastUsage', DateTimeType::class, [
-                'required' => true,
+                'constraint' => [
+                    new NotBlank(),
+                    new DateTime(),
+                ]
             ])
             ->add('level', IntegerType::class, [
-                'required' => true,
+                'constraint' => [
+                    new NotBlank(),
+                ]
             ]);
     }
 }

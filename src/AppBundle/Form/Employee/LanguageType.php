@@ -6,20 +6,27 @@ use Doctrine\DBAL\Types\IntegerType;
 use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
-class LanguageForm extends AbstractType
+class LanguageType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name', TextType::class, [
-                'required' => true,
+                'constraint' => [
+                    new NotBlank(),
+                ]
             ])
             ->add('iso3', TextType::class, [
-                'required' => true,
+                'constraint' => [
+                    new NotBlank(),
+                ]
             ])
             ->add('level', IntegerType::class, [
-                'required' => true,
+                'constraint' => [
+                    new NotBlank(),
+                ]
             ]);
     }
 }

@@ -6,40 +6,55 @@ use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
-class EmployeeForm extends AbstractType
+class EmployeeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             // Employee
             ->add('first_name', TextType::class, [
-                'required' => true,
+                'constraint' => [
+                    new NotBlank(),
+                ]
             ])
             ->add('last_name', TextType::class, [
-                'required' => true,
+                'constraint' => [
+                    new NotBlank(),
+                ]
             ])
             ->add('username', TextType::class, [
-                'required' => true,
+                'constraint' => [
+                    new NotBlank(),
+                ]
             ])
             ->add('job_title', TextType::class, [
-                'required' => true,
+                'constraint' => [
+                    new NotBlank(),
+                ]
             ])
             // Details
             ->add('experience', TextType::class, [
-                'required' => true,
+                'constraint' => [
+                    new NotBlank(),
+                ]
             ])
-            ->add('job_title', TextType::class, [
-                'eduction' => true,
+            ->add('education', TextType::class, [
+                'constraint' => [
+                    new NotBlank(),
+                ]
             ])
             ->add('hobbies', TextType::class, [
-                'required' => true,
+                'constraint' => [
+                    new NotBlank(),
+                ]
             ])
             // Email
             ->add('email', TextType::class, [
-                'required' => false,
                 'constraint' => [
-                    new Email()
+                    new NotBlank(),
+                    new Email(),
                 ]
             ]);
     }
