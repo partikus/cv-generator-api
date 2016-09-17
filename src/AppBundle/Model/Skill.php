@@ -6,7 +6,10 @@ namespace AppBundle\Model;
 
 class Skill
 {
+    private $name;
+
     public function __construct(string $name)
     {
+        $this->name = $name;
     }
 }

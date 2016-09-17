@@ -13,8 +13,8 @@ class Project
     private $responsibillites;
     private $skills;
     private $description;
-    private $startAt;
-    private $endAt;
+    private $startDate;
+    private $endDate;
 
     public function __construct(
         string $company,
@@ -22,17 +22,17 @@ class Project
         string $responsibillites,
         Skills $skills,
         string $description,
-        \DateTimeImmutable $startAt,
-        \DateTimeImmutable $endAt = null
+        \DateTimeImmutable $startDate,
+        \DateTimeImmutable $endDate = null
     )
     {
-        $this->company = $company;
-        $this->role = $role;
+        $this->company          = $company;
+        $this->role             = $role;
         $this->responsibillites = $responsibillites;
-        $this->skills = $skills;
-        $this->description = $description;
-        $this->startAt = $startAt;
-        $this->endAt = $endAt;
+        $this->skills           = $skills;
+        $this->description      = $description;
+        $this->startDate        = $startDate;
+        $this->endDate          = $endDate;
     }
 
     /**
@@ -78,16 +78,16 @@ class Project
     /**
      * @return \DateTimeImmutable
      */
-    public function getStartAt(): \DateTimeImmutable
+    public function getStartDate(): \DateTimeImmutable
     {
-        return $this->startAt;
+        return $this->startDate;
     }
 
     /**
      * @return \DateTimeImmutable
      */
-    public function getEndAt(): \DateTimeImmutable
+    public function getEndDate(): \DateTimeImmutable
     {
-        return $this->endAt;
+        return $this->endDate;
     }
 }
