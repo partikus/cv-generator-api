@@ -43,8 +43,7 @@ function runInBackground {
     docker-compose -f docker-compose.yml -f docker-compose.local.yml kill > /dev/null 2>&1
     docker-compose -f docker-compose.yml -f docker-compose.local.yml rm -f -v > /dev/null 2>&1
     docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d nginx
-    docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d mongoclient
-    docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d swagger
+    docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d phpmyadmin
     docker-compose -f docker-compose.yml -f docker-compose.local.yml run --entrypoint /bin/bash php
     docker-compose -f docker-compose.yml -f docker-compose.local.yml kill > /dev/null 2>&1
     docker-compose -f docker-compose.yml -f docker-compose.local.yml rm -f -v > /dev/null 2>&1

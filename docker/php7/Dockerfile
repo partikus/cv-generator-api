@@ -26,7 +26,9 @@ RUN apt-get -qq update --fix-missing && \
         git-core \
         default-jdk \
         ant \
+        libcurl4-openssl-dev pkg-config libssl-dev \
         && rm -rf /var/lib/apt/lists/*
+
 
 COPY docker-php-pecl-install /usr/local/bin/
 
