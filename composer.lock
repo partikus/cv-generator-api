@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "95a01a468c44ee21adb99e795e19f854",
-    "content-hash": "7f02cd10d23c9d095eba735447e6d516",
+    "hash": "3d91501991a1c7b5453cb0b12a427e44",
+    "content-hash": "7a182e2fb9f9e04c8d6692868f767b59",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1003,6 +1003,56 @@
             "time": "2016-04-03 06:00:07"
         },
         {
+            "name": "pda/pheanstalk",
+            "version": "v3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pda/pheanstalk.git",
+                "reference": "430e77c551479aad0c6ada0450ee844cf656a18b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pda/pheanstalk/zipball/430e77c551479aad0c6ada0450ee844cf656a18b",
+                "reference": "430e77c551479aad0c6ada0450ee844cf656a18b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Pheanstalk\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Annesley",
+                    "email": "paul@annesley.cc",
+                    "homepage": "http://paul.annesley.cc/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP client for beanstalkd queue",
+            "homepage": "https://github.com/pda/pheanstalk",
+            "keywords": [
+                "beanstalkd"
+            ],
+            "time": "2015-08-07 21:42:41"
+        },
+        {
             "name": "psr/cache",
             "version": "1.0.1",
             "source": {
@@ -1890,6 +1940,51 @@
                 "framework"
             ],
             "time": "2016-09-03 15:28:43"
+        },
+        {
+            "name": "thunderer/serializard",
+            "version": "v0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thunderer/Serializard.git",
+                "reference": "fce4b8e8d765cc39373384bec3f4e55a08432819"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thunderer/Serializard/zipball/fce4b8e8d765cc39373384bec3f4e55a08432819",
+                "reference": "fce4b8e8d765cc39373384bec3f4e55a08432819",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3",
+                "symfony/yaml": "^2.3|^3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.1|^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Thunder\\Serializard\\": "src/",
+                    "Thunder\\Serializard\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tomasz Kowalczyk",
+                    "email": "tomasz@kowalczyk.cc"
+                }
+            ],
+            "description": "Flexible serializer",
+            "keywords": [
+                "library",
+                "serializer"
+            ],
+            "time": "2016-08-03 12:41:25"
         },
         {
             "name": "twig/twig",

@@ -3,5 +3,78 @@
 parameters:
 #    parameter_name: value
 
-#services:
-#
+services:
+  app.pheanstalk:
+    class: Pheanstalk\Pheanstalk
+    arguments: ["%beanstalkd_host%"]
+
+  app.serializer.definition.employee:
+    class: AppBundle\Serializer\EmployeeSerializer
+    public: false
+
+  app.serializer.definition.collection:
+    class: AppBundle\Serializer\CollectionSerializer
+    public: false
+
+  app.serializer.definition.employee_language:
+    class: AppBundle\Serializer\EmployeeLanguageSerializer
+    public: false
+
+  app.serializer.definition.employee_skill:
+    class: AppBundle\Serializer\EmployeeSkillSerializer
+    public: false
+
+  app.serializer.definition.language:
+    class: AppBundle\Serializer\LanguageSerializer
+    public: false
+
+  app.serializer.definition.date_time:
+    class: AppBundle\Serializer\DateTimeSerializer
+    public: false
+
+  app.serializer.definition.skill:
+    class: AppBundle\Serializer\SkillSerializer
+    public: false
+
+  app.serializer.definition.proxy:
+    class: AppBundle\Serializer\ProxySerializer
+    public: false
+
+  app.serializard.normalizers:
+    class: Thunder\Serializard\NormalizerContainer\FallbackNormalizerContainer
+    public: false
+    calls:
+      - [add, ["AppBundle\\Entity\\Employee", 'Employee', '@app.serializer.definition.employee']]
+      - [add, ["AppBundle\\Entity\\EmployeeLanguage", 'EmployeeLanguage', '@app.serializer.definition.employee_language']]
+      - [add, ["AppBundle\\Entity\\EmployeeSkill", 'EmployeeSkill', '@app.serializer.definition.employee_skill']]
+      - [add, ["AppBundle\\Entity\\Language", 'Language', '@app.serializer.definition.language']]
+      - [add, ["DateTime", 'DateTime', '@app.serializer.definition.date_time']]
+      - [add, ["Doctrine\\ORM\\Proxy\\Proxy", 'Proxy', '@app.serializer.definition.proxy']]
+      - [add, ["Doctrine\\Common\\Collections\\Collection", 'Collection', '@app.serializer.definition.collection']]
+
+  app.formats.json:
+    class: Thunder\Serializard\Format\JsonFormat
+    public: false
+
+  app.formats.xml:
+    class: Thunder\Serializard\Format\XmlFormat
+    public: false
+
+  app.formats:
+    class: Thunder\Serializard\FormatContainer\FormatContainer
+    public: false
+    calls:
+      - [add, ['json', '@app.formats.json']]
+      - [add, ['xml', '@app.formats.xml']]
+
+  app.hydrators:
+    class: Thunder\Serializard\HydratorContainer\FallbackHydratorContainer
+    public: false
+
+  app.serializard:
+    class: Thunder\Serializard\Serializard
+    arguments: ['@app.formats', '@app.serializard.normalizers', '@app.hydrators']
+    public: false
+
+  app.serializer:
+    alias: "app.serializard"
