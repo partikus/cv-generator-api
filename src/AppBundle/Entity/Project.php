@@ -274,14 +274,15 @@ class Project
         return $this->skills;
     }
 
-    public function addSkill(Skill $skill)
+    public function addSkill(ProjectSkill $skill)
     {
         if (!$this->skills->contains($skill)) {
+            $skill->setProject($this);
             $this->skills->add($skill);
         }
     }
 
-    public function removeSkill(Skill $skill)
+    public function removeSkill(ProjectSkill $skill)
     {
         $this->skills->removeElement($skill);
     }
