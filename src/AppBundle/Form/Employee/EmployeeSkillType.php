@@ -18,14 +18,14 @@ class EmployeeSkillType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('startDate', DateTimeType::class, [
-            'widget' => 'single_text'
+            'widget' => 'single_text',
         ]);
         $builder->add('lastUsage', DateTimeType::class, [
-            'widget' => 'single_text'
+            'widget' => 'single_text',
         ]);
         $builder->add('level', IntegerType::class);
         $builder->add('skill', EntityType::class, [
-            'class' => Skill::class
+            'class' => Skill::class,
         ]);
 
     }

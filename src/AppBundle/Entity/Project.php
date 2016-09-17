@@ -77,11 +77,8 @@ class Project
     private $employee;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Skill")
-     * @ORM\JoinTable(name="project_skill",
-     *      joinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="skill_id", referencedColumnName="id", unique=true)}
-     * )
+     * @var ArrayCollection|ProjectSkill[]
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectSkill", cascade={"ALL"}, mappedBy="project", orphanRemoval=true)
      */
     private $skills;
 
@@ -175,7 +172,7 @@ class Project
     /**
      * @return string
      */
-    public function getResponsibilities(): string
+    public function getResponsibilities()
     {
         return $this->responsibilities;
     }
@@ -195,7 +192,7 @@ class Project
     /**
      * @return string
      */
-    public function getDescription(): string
+    public function getDescription()
     {
         return $this->description;
     }
@@ -215,7 +212,7 @@ class Project
     /**
      * @return \DateTime
      */
-    public function getStartDate(): \DateTime
+    public function getStartDate()
     {
         return $this->startDate;
     }
@@ -235,7 +232,7 @@ class Project
     /**
      * @return \DateTime
      */
-    public function getEndDate(): \DateTime
+    public function getEndDate()
     {
         return $this->endDate;
     }
@@ -277,14 +274,15 @@ class Project
         return $this->skills;
     }
 
-    public function addSkill(Skill $skill)
+    public function addSkill(ProjectSkill $skill)
     {
         if (!$this->skills->contains($skill)) {
+            $skill->setProject($this);
             $this->skills->add($skill);
         }
     }
 
-    public function removeSkill(Skill $skill)
+    public function removeSkill(ProjectSkill $skill)
     {
         $this->skills->removeElement($skill);
     }
