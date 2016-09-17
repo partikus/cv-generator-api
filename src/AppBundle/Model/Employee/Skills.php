@@ -2,9 +2,8 @@
 
 declare (strict_types = 1);
 
-namespace AppBundle\Model;
+namespace AppBundle\Model\Employee;
 
-use AppBundle\Model\Employee\Skill;
 use Doctrine\Common\Collections\ArrayCollection;
 
 class Skills

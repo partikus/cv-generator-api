@@ -8,12 +8,13 @@ use AppBundle\Model\Employee\Details;
 use AppBundle\Model\Employee\Email;
 use AppBundle\Model\Employee\Languages;
 use AppBundle\Model\Employee\Projects;
+use AppBundle\Model\Employee\Skills;
 
 class Employee
 {
     private $firstName;
     private $lastName;
-    private $userName;
+    private $username;
     private $email;
     private $jobTitle;
     private $skills;
@@ -29,14 +30,14 @@ class Employee
         Projects $projects
     ) {
         $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->userName = $username;
-        $this->email = $email;
-        $this->jobTitle = $jobTitle;
-        $this->skills = $skills;
-        $this->details = $details;
+        $this->lastName  = $lastName;
+        $this->username  = $username;
+        $this->email     = $email;
+        $this->jobTitle  = $jobTitle;
+        $this->skills    = $skills;
+        $this->details   = $details;
         $this->languages = $languages;
-        $this->projects = $projects;
+        $this->projects  = $projects;
     }
 
     /**
@@ -58,9 +59,9 @@ class Employee
     /**
      * @return string
      */
-    public function getUserName(): string
+    public function getUsername(): string
     {
-        return $this->userName;
+        return $this->username;
     }
 
     /**

@@ -9,12 +9,14 @@ class Skill
     private $name;
     private $description;
     private $url;
+    private $type;
 
-    public function __construct(string $name, string $description, string $url)
+    public function __construct(string $name, Type $skillType, string $description = null, string $url = null)
     {
-        $this->name = $name;
+        $this->name        = $name;
+        $this->type        = $skillType;
         $this->description = $description;
-        $this->url = $url;
+        $this->url         = $url;
     }
 
     /**
@@ -28,7 +30,7 @@ class Skill
     /**
      * @return string
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -36,8 +38,16 @@ class Skill
     /**
      * @return string
      */
-    public function getUrl(): string
+    public function getUrl(): ?string
     {
         return $this->url;
+    }
+
+    /**
+     * @return Type
+     */
+    public function getType(): Type
+    {
+        return $this->type;
     }
 }
