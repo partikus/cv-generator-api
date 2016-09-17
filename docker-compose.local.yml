@@ -45,6 +45,6 @@ swagger:
   ports:
     - "8333:8080"
 
-rabbit:
+beanstalkd:
   ports:
-    - "8444:15672"
+    - "8444:11300"
