@@ -3,12 +3,14 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Skill
  *
  * @ORM\Table(name="skill")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SkillRepository")
+ * @UniqueEntity("name")
  */
 class Skill
 {
@@ -33,14 +35,14 @@ class Skill
      *
      * @ORM\Column(name="url", type="text", nullable=true)
      */
-    private $url;
+    private $url = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="description", type="text", nullable=true)
      */
-    private $description;
+    private $description = '';
 
     /**
      * Get id
@@ -79,7 +81,7 @@ class Skill
     /**
      * @return string
      */
-    public function getUrl(): string
+    public function getUrl()
     {
         return $this->url;
     }
@@ -99,7 +101,7 @@ class Skill
     /**
      * @return string
      */
-    public function getDescription(): string
+    public function getDescription()
     {
         return $this->description;
     }
@@ -116,4 +118,3 @@ class Skill
         return $this;
     }
 }
-
