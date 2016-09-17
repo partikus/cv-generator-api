@@ -1,0 +1,188 @@
+swagger: '2.0'
+info:
+  title: CV Generator
+  description: The simplest way to generate beatuful CV.
+  version: "0.1.0"
+host: cv.pgs-soft.com
+schemes:
+  - http
+  - https
+basePath: /v1
+produces:
+  - application/json
+paths:
+  /employees:
+    get:
+      summary: Empleyees list
+      parameters:
+        - name: limit
+          in: query
+          description: Number of rows per page
+          required: false
+          type: number
+          format: integer
+        - name: offset
+          in: query
+          description: Offset number of results
+          required: false
+          type: number
+          format: integer
+      tags:
+        - Employee
+      responses:
+        200:
+          description: List of employees
+          schema:
+            type: object
+            properties:
+              limit:
+                type: number
+                format: integer
+              offset:
+                type: number
+                format: integer
+              total:
+                type: number
+                format: integer
+              items:
+                description: Employees
+                type: array
+                items:
+                  $ref: '#/definitions/Employee'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /skills:
+    get:
+      summary: Skills
+      parameters:
+        - name: limit
+          in: query
+          description: Number of rows per page
+          required: false
+          type: number
+          format: integer
+        - name: offset
+          in: query
+          description: Offset number of results
+          required: false
+          type: number
+          format: integer
+      tags:
+        - Skill
+      responses:
+        200:
+          description: List of skills
+          schema:
+            $ref: '#/definitions/BaseSkill'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+definitions:
+  Employee:
+    type: object
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      username:
+        type: string
+      email:
+        type: string
+      jobTitle:
+        type: string
+      details:
+        $ref: '#/definitions/Details'
+      skills:
+        $ref: '#/definitions/Skills'
+      languages:
+        $ref: '#/definitions/Languages'
+      projects:
+        $ref: '#/definitions/Projects'
+  Details:
+    type: object
+    properties:
+      experience:
+        type: string
+      eduction:
+        type: string
+      hobbies:
+        type: string
+  Skills:
+    type: array
+    items:
+      $ref: '#/definitions/Skill'
+  Skill:
+    type: object
+    properties:
+      skill:
+        $ref: '#/definitions/BaseSkill'
+      startDate:
+        type: string
+        format: date-time
+      lastUsage:
+        type: string
+        format: date-time
+      level:
+        type: number
+        format: int32
+  BaseSkill:
+    type: object
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+      url:
+        type: string
+  Languages:
+    type: array
+    items:
+      $ref: '#/definitions/Language'
+  Language:
+    type: object
+    properties:
+      name:
+        type: string
+      iso3:
+        type: string
+      level:
+        type: number
+        format: int32
+  Project:
+    type: object
+    properties:
+      company:
+        type: string
+      role:
+        type: string
+      responsibilities:
+        type: string
+      skills:
+        $ref: '#/definitions/BaseSkill'
+      description:
+        type: string
+      startDate:
+        type: string
+        format: date-time
+      endDate:
+        type: string
+        format: date-time
+  Projects:
+    type: array
+    items:
+      $ref: '#/definitions/Project'
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string
