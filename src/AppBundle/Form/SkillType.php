@@ -2,8 +2,8 @@
 
 namespace AppBundle\Form;
 
-use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Url;
@@ -14,17 +14,17 @@ class SkillType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'constraint' => [
+                'constraints' => [
                     new NotBlank(),
                 ]
             ])
             ->add('description', TextType::class, [
-                'constraint' => [
+                'constraints' => [
                     new NotBlank(),
                 ]
             ])
             ->add('url', TextType::class, [
-                'constraint' => [
+                'constraints' => [
                     new NotBlank(),
                     new Url(),
                 ]

@@ -2,9 +2,9 @@
 
 namespace AppBundle\Form\Employee;
 
-use Doctrine\DBAL\Types\DateTimeType;
-use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -15,33 +15,33 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('company', TextType::class, [
-                'constraint' => [
+                'constraints' => [
                     new NotBlank(),
                 ]
             ])
             ->add('role', TextType::class, [
-                'constraint' => [
+                'constraints' => [
                     new NotBlank(),
                 ]
             ])
             ->add('responsibilities', TextType::class, [
-                'constraint' => [
+                'constraints' => [
                     new NotBlank(),
                 ]
             ])
             ->add('description', TextType::class, [
-                'constraint' => [
+                'constraints' => [
                     new NotBlank(),
                 ]
             ])
             ->add('startDate', DateTimeType::class, [
-                'constraint' => [
+                'constraints' => [
                     new NotBlank(),
                     new DateTime(),
                 ]
             ])
             ->add('endDate', DateTimeType::class, [
-                'constraint' => [
+                'constraints' => [
                     new NotBlank(),
                     new DateTime(),
                 ]

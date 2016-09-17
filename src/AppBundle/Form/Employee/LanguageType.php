@@ -2,9 +2,9 @@
 
 namespace AppBundle\Form\Employee;
 
-use Doctrine\DBAL\Types\IntegerType;
-use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
@@ -14,17 +14,18 @@ class LanguageType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'constraint' => [
+                'constraints' => [
                     new NotBlank(),
                 ]
             ])
             ->add('iso3', TextType::class, [
-                'constraint' => [
+                'required' => true,
+                'constraints' => [
                     new NotBlank(),
                 ]
             ])
             ->add('level', IntegerType::class, [
-                'constraint' => [
+                'constraints' => [
                     new NotBlank(),
                 ]
             ]);
