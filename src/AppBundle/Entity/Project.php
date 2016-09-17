@@ -77,11 +77,8 @@ class Project
     private $employee;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Skill")
-     * @ORM\JoinTable(name="project_skill",
-     *      joinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="skill_id", referencedColumnName="id", unique=true)}
-     * )
+     * @var ArrayCollection|ProjectSkill[]
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectSkill", cascade={"ALL"}, mappedBy="project", orphanRemoval=true)
      */
     private $skills;
 

@@ -3,7 +3,6 @@
 namespace AppBundle\Form\Employee;
 
 use AppBundle\Entity\Project;
-use AppBundle\Form\SkillType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -58,7 +57,7 @@ class ProjectType extends AbstractType
                 ],
             ])
             ->add('skills', CollectionType::class, [
-                'entry_type' => SkillType::class,
+                'entry_type' => ProjectSkillType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
             ]);
