@@ -53,6 +53,33 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
+  /skills:
+    get:
+      summary: Skills
+      parameters:
+        - name: limit
+          in: query
+          description: Number of rows per page
+          required: false
+          type: number
+          format: integer
+        - name: offset
+          in: query
+          description: Offset number of results
+          required: false
+          type: number
+          format: integer
+      tags:
+        - Skill
+      responses:
+        200:
+          description: List of skills
+          schema:
+            $ref: '#/definitions/BaseSkill'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
 
 definitions:
   Employee:
@@ -107,6 +134,10 @@ definitions:
     type: object
     properties:
       name:
+        type: string
+      description:
+        type: string
+      url:
         type: string
   Languages:
     type: array
