@@ -7,6 +7,8 @@ php:
 mongo:
   volumes:
     - ./data:/data/db
+  ports:
+    - "8003:27017"
 
 nginx:
   image: "${APP_NAME}:${APP_VERSION}-nginx"
@@ -21,3 +23,15 @@ nginx:
     PROJECT_WEB_DIR: ${PROJECT_WEB_DIR}
     PROJECT_INDEX_FILE: ${PROJECT_INDEX_FILE}
     PROJECT_DEV_INDEX_FILE: ${PROJECT_DEV_INDEX_FILE}
+
+mongoclient:
+  image: mongoclient/mongoclient
+  links:
+    - mongo
+  ports:
+    - "8001:3000"
+
+swagger:
+  image: swaggerapi/swagger-editor
+  ports:
+    - "8002:8080"
