@@ -8,6 +8,7 @@ php:
   entrypoint: "/bin/bash"
   command: "/entrypoint.sh"
   links:
+    - rabbit
     - mongo
   volumes_from:
     - data
@@ -16,3 +17,6 @@ php:
 
 mongo:
   image: mongo:3.3
+
+rabbit:
+  image: rabbitmq:3

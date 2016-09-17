@@ -1,10 +1,42 @@
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
         <service id="stash_odm.models" class="Stash\ModelCollection"/>
+
+        <service id="stash_odm.converter" class="Stash\Converter\Converter"/>
+
+        <service id="stash_odm.lazy_loading_factory" class="ProxyManager\Factory\LazyLoadingValueHolderFactory"  public="false"/>
+
+        <service id="stash_odm.reference_resolver" class="Stash\ReferenceResolver" public="false">
+            <argument type="service" id="stash_odm.models"/>
+        </service>
+
+        <service id="stash_odm.proxy_adapter" class="Stash\ProxyAdapter" public="false">
+            <argument type="service" id="stash_odm.lazy_loading_factory"/>
+        </service>
+
+        <service id="stash_odm.document_converter" class="Stash\DocumentConverter" public="false">
+            <argument type="service" id="stash_odm.converter"/>
+            <argument type="service" id="stash_odm.reference_resolver"/>
+            <argument type="service" id="stash_odm.models"/>
+            <argument type="service" id="stash_odm.proxy_adapter"/>
+        </service>
+
+        <service id="stash_odm.client" class="MongoClient" public="false">
+            <argument>%stash_odm_server%</argument>
+            <argument>%stash_odm_options%</argument>
+            <argument>%stash_odm_driver_options%</argument>
+        </service>
+
+        <service id="stash_odm.connection" class="Stash\Connection">
+            <argument type="service" id="stash_odm.client"/>
+            <argument type="service" id="stash_odm.converter"/>
+            <argument type="service" id="event_dispatcher"/>
+        </service>
+
     </services>
 </container>
