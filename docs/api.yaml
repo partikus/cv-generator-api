@@ -7,26 +7,13 @@ host: cv.pgs-soft.com
 schemes:
   - http
   - https
-basePath: /v1
+basePath: /
 produces:
   - application/json
 paths:
   /employees:
     get:
       summary: Empleyees list
-      parameters:
-        - name: limit
-          in: query
-          description: Number of rows per page
-          required: false
-          type: number
-          format: integer
-        - name: offset
-          in: query
-          description: Offset number of results
-          required: false
-          type: number
-          format: integer
       tags:
         - Employee
       responses:
@@ -36,14 +23,14 @@ paths:
             type: object
             properties:
               limit:
-                type: number
-                format: integer
+                type: integer
+                format: int32
               offset:
-                type: number
-                format: integer
+                type: integer
+                format: int32
               total:
-                type: number
-                format: integer
+                type: integer
+                format: int32
               items:
                 description: Employees
                 type: array
@@ -61,26 +48,237 @@ paths:
           in: query
           description: Number of rows per page
           required: false
-          type: number
-          format: integer
+          type: integer
+          format: int32
         - name: offset
           in: query
           description: Offset number of results
           required: false
-          type: number
-          format: integer
+          type: integer
+          format: int32
       tags:
         - Skill
       responses:
         200:
           description: List of skills
           schema:
-            $ref: '#/definitions/BaseSkill'
+            $ref: '#/definitions/BaseSkillDisplay'
         default:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-
+    post:
+      summary: Update specific skill
+      parameters:
+        - name: body
+          in: body
+          description: skill data
+          required: true
+          schema:
+            $ref: '#/definitions/BaseSkill'
+      tags:
+        - Skill
+      responses:
+        201:
+          description: Skill added
+          schema:
+            $ref: '#/definitions/BaseSkillDisplay'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /skills/{skill}:
+    parameters:
+      - name: skill
+        in: path
+        description: ID of skill
+        required: true
+        type: integer
+        format: int32
+    get:
+      summary: Skills
+      tags:
+        - Skill
+      responses:
+        200:
+          description: Skill with passed id.
+          schema:
+            $ref: '#/definitions/BaseSkillDisplay'
+        404:
+          description: Not fount skill with passed id.
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: Update specific skill
+      parameters:
+        - name: body
+          in: body
+          description: skill data
+          required: true
+          schema:
+            $ref: '#/definitions/BaseSkill'
+      tags:
+        - Skill
+      responses:
+        200:
+          description: One skill
+          schema:
+            $ref: '#/definitions/BaseSkillDisplay'
+        404:
+          description: Not fount skill with passed id.
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Delete skill
+      tags:
+        - Skill
+      responses:
+        200:
+          description: Skill with passed id was deleted.
+        404:
+          description: Not fount skill with passed id.
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /employees/{employee}/projects:
+    parameters:
+      - name: employee
+        in: path
+        description: employee id
+        required: true
+        type: integer
+        format: int32
+    get:
+      summary: Skills
+      parameters:
+        - name: limit
+          in: query
+          description: Number of rows per page
+          required: false
+          type: integer
+          format: int32
+        - name: offset
+          in: query
+          description: Offset number of results
+          required: false
+          type: integer
+          format: int32
+      tags:
+        - Employee
+        - Projects
+      responses:
+        200:
+          description: List of employee projects
+          schema:
+            type: object
+            properties:
+              limit:
+                type: integer
+                format: int32
+              offset:
+               type: integer
+               format: int32
+              total:
+                type: integer
+                format: int32
+              items:
+                description: Projects
+                type: array
+                items:
+                  $ref: '#/definitions/ProjectDisplay'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Update specific employee project
+      parameters:
+        - name: body
+          in: body
+          description: project data
+          required: true
+          schema:
+            $ref: '#/definitions/Project'
+      tags:
+        - Employee
+        - Projects
+      responses:
+        201:
+          description: Project added
+          schema:
+            $ref: '#/definitions/ProjectDisplay'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /employees/{employee}/projects/{project}:
+    parameters:
+      - name: employee
+        in: path
+        description: employee id
+        required: true
+        type: integer
+        format: int32
+      - name: project
+        in: path
+        description: employee id
+        required: true
+        type: integer
+        format: int32
+    get:
+      summary: Skills
+      tags:
+        - Employee
+        - Projects
+      responses:
+        200:
+          description: employee project
+          schema:
+            $ref: '#/definitions/ProjectDisplay'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: Update specific employee project
+      parameters:
+        - name: body
+          in: body
+          description: project data
+          required: true
+          schema:
+            $ref: '#/definitions/Project'
+      tags:
+        - Employee
+        - Projects
+      responses:
+        201:
+          description: Project added
+          schema:
+            $ref: '#/definitions/ProjectDisplay'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Delete employee project
+      tags:
+        - Employee
+        - Projects
+      responses:
+        200:
+          description: deleted
+        404:
+          description: Not fount employee or project.
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
 definitions:
   Employee:
     type: object
@@ -95,8 +293,12 @@ definitions:
         type: string
       jobTitle:
         type: string
-      details:
-        $ref: '#/definitions/Details'
+      experience:
+        type: string
+      eduction:
+        type: string
+      hobbies:
+        type: string
       skills:
         type: array
         items:
@@ -108,16 +310,7 @@ definitions:
       projects:
         type: array
         items:
-          $ref: '#/definitions/Project'
-  Details:
-    type: object
-    properties:
-      experience:
-        type: string
-      eduction:
-        type: string
-      hobbies:
-        type: string
+          $ref: '#/definitions/ProjectDisplay'
   Skill:
     type: object
     properties:
@@ -130,11 +323,25 @@ definitions:
         type: string
         format: date-time
       level:
-        type: number
+        type: integer
         format: int32
   BaseSkill:
     type: object
+    required:
+      - name
     properties:
+      name:
+        type: string
+      description:
+        type: string
+      url:
+        type: string
+  BaseSkillDisplay:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
       name:
         type: string
       description:
@@ -149,19 +356,26 @@ definitions:
       iso3:
         type: string
       level:
-        type: number
+        type: integer
         format: int32
   Project:
     type: object
+    required:
+      - name
+      - company
+      - role
+      - responsibilities
+      - description
+      - startDate
     properties:
+      name:
+        type: string
       company:
         type: string
       role:
         type: string
       responsibilities:
         type: string
-      skills:
-        $ref: '#/definitions/BaseSkill'
       description:
         type: string
       startDate:
@@ -170,6 +384,45 @@ definitions:
       endDate:
         type: string
         format: date-time
+      skills:
+        type: array
+        items:
+          type: object
+          required:
+            - skill
+          properties:
+            skill:
+              type: integer
+              format: int32
+  ProjectDisplay:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      employee:
+        type: integer
+        format: int32
+      name:
+        type: string
+      company:
+        type: string
+      role:
+        type: string
+      responsibilities:
+        type: string
+      description:
+        type: string
+      startDate:
+        type: string
+        format: date-time
+      endDate:
+        type: string
+        format: date-time
+      skills:
+        type: array
+        items:
+          $ref: '#/definitions/BaseSkillDisplay'
   Error:
     type: object
     properties:
