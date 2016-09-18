@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Employee;
+use AppBundle\Entity\Job;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -22,8 +23,12 @@ class CvController extends ApiController
 
         $serializedEmployee = $serializer->serialize($employee, 'json');
 
-        $id = $pheanstalk->useTube('todo')
-                         ->put($serializedEmployee);
+        $id = $pheanstalk->useTube('todo')->put($serializedEmployee);
+        $job = new Job($id);
+        $job->setEmployee($employee);
+        $em = $this->get('doctrine.orm.entity_manager');
+        $em->persist($job);
+        $em->flush($job);
 
         return $this->success(['status' => 'queued', 'id' => $id]);
     }

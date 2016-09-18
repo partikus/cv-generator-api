@@ -78,3 +78,11 @@ services:
 
   app.serializer:
     alias: "app.serializard"
+
+  app.pdf.storage:
+    class: AppBundle\Pdf\LocalStorage
+    arguments: ['@filesystem', '%pdf_file_storage%']
+
+  app.pdf.receiver:
+    class: AppBundle\Pdf\Receiver
+    arguments: ['@doctrine.orm.entity_manager', '@app.pdf.storage']

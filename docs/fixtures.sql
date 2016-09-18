@@ -1,0 +1,2 @@
+INSERT INTO `language` (`id`, `name`, `iso3`) VALUES (NULL, 'Polish', 'pol'), (NULL, 'English', 'eng');
+INSERT INTO `skill` (`id`, `name`, `url`, `description`) VALUES (NULL, 'docker', NULL, NULL), (NULL, 'vagrant', NULL, NULL);
