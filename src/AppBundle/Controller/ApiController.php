@@ -39,12 +39,12 @@ class ApiController extends Controller
     /**
      *
      *
-     * @param array $content
+     * @param string $content
      * @param int $code
      *
      * @return Response
      */
-    protected function error(array $content, int $code = Response::HTTP_BAD_REQUEST) : Response
+    protected function error($content, int $code = Response::HTTP_BAD_REQUEST) : Response
     {
         return $this->response($content, $code);
     }
@@ -52,12 +52,12 @@ class ApiController extends Controller
     /**
      *
      *
-     * @param array $content
+     * @param string $content
      * @param int $code
      *
      * @return Response
      */
-    protected function success(array $content, int $code = Response::HTTP_OK) : Response
+    protected function success($content, int $code = Response::HTTP_OK) : Response
     {
         return $this->response($content, $code);
     }
@@ -65,19 +65,15 @@ class ApiController extends Controller
     /**
      *
      *
-     * @param array $content
+     * @param string $content
      * @param int $code
      *
      * @return Response
      */
-    protected function response(array $content, int $code) : Response
+    protected function response($content, int $code) : Response
     {
         $response = new Response();
-
-        if (!empty($content)) {
-            $content = json_encode($content);
-            $response->setContent($content);
-        }
+        $response->setContent($content);
         $response->setStatusCode($code);
         $response->headers->set('Content-Type', 'application/json');
 

@@ -48,6 +48,7 @@ services:
       - [add, ["AppBundle\\Entity\\EmployeeLanguage", 'EmployeeLanguage', '@app.serializer.definition.employee_language']]
       - [add, ["AppBundle\\Entity\\EmployeeSkill", 'EmployeeSkill', '@app.serializer.definition.employee_skill']]
       - [add, ["AppBundle\\Entity\\Language", 'Language', '@app.serializer.definition.language']]
+      - [add, ["AppBundle\\Entity\\Skill", 'Skill', '@app.serializer.definition.skill']]
       - [add, ["DateTime", 'DateTime', '@app.serializer.definition.date_time']]
       - [add, ["Doctrine\\ORM\\Proxy\\Proxy", 'Proxy', '@app.serializer.definition.proxy']]
       - [add, ["Doctrine\\Common\\Collections\\Collection", 'Collection', '@app.serializer.definition.collection']]

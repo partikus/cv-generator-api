@@ -22,19 +22,10 @@ class SkillController extends ApiController
         $repo = $this->get('doctrine')->getRepository(Skill::class);
         $skills = $repo->findAll();
 
-        $result = array_map(
-            function (Skill $skill) {
-                return [
-                    'id' => $skill->getId(),
-                    'name' => $skill->getName(),
-                    'url' => $skill->getUrl(),
-                    'description' => $skill->getDescription(),
-                ];
-            },
-            $skills
-        );
+        $serializer = $this->get('app.serializer');
+        $serializedSkills = $serializer->serialize($skills, 'json');
 
-        return $this->success($result);
+        return $this->success($serializedSkills);
     }
 
     /**
@@ -43,12 +34,10 @@ class SkillController extends ApiController
      */
     public function getAction(Skill $skill)
     {
-        return $this->success([
-            'id' => $skill->getId(),
-            'name' => $skill->getName(),
-            'url' => $skill->getUrl(),
-            'description' => $skill->getDescription(),
-        ]);
+        $serializer = $this->get('app.serializer');
+        $serializedSkill = $serializer->serialize($skill, 'json');
+
+        return $this->success($serializedSkill);
     }
 
     /**
