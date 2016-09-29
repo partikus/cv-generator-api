@@ -3,7 +3,7 @@ FROM debian:wheezy
 MAINTAINER Michał Kruczek <mkruczek@pgs-soft.com>
 
 ADD install.sh install.sh
-RUN chmod +x install.sh && ./install.sh && rm install.sh
+RUN chmod +x install.sh && sync && ./install.sh && rm install.sh
 
 EXPOSE 11300
 
