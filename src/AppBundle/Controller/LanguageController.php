@@ -44,7 +44,7 @@ class LanguageController extends ApiController
         $form = $this->createForm(EmployeeLanguageType::class);
         $this->handleRequest($request, $form);
 
-        if ( ! $form->isValid()) {
+        if (!$form->isValid()) {
             $formErrors = $this->getFormErrorsAsArray($form);
             $response   = $this->error($formErrors);
 

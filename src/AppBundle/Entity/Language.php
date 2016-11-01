@@ -94,4 +94,3 @@ class Language
         return $this->iso3;
     }
 }
-

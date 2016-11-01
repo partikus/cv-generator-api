@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="demo" default="build">
+    <property name="basedir" value="$(pwd)"/>
     <target name="build"
-            depends="list,-check-failure"
+            depends="phpcs,-check-failure"
     />
-
-    <target name="list"
-            unless="list.done"
-            description="List file structure">
-        <exec executable="ls" resultproperty="result.list" taskname="list">
-            <arg value="-l"/>
-            <arg value="-a"/>
+    <target name="phpcs"
+            unless="phpcs.done"
+            description="Find coding standard violations using PHP_CodeSniffer and print human readable output. Intended for usage on the command line before committing.">
+        <exec executable="${basedir}/vendor/bin/phpcs" resultproperty="result.phpcs" taskname="phpcs">
+            <arg value="-n"/>
+            <arg value="--standard=PSR2"/>
+            <arg value="--extensions=php"/>
+            <arg value="--ignore=autoload.php"/>
+            <arg path="${basedir}/src/"/>
         </exec>
 
-        <property name="list.done" value="true"/>
+        <property name="phpcs.done" value="true"/>
     </target>
+
 
     <target name="-check-failure">
         <fail message="Build did not finish successfully">
             <condition>
                 <or>
                     <not>
-                        <equals arg1="${result.list}" arg2="0"/>
+                        <equals arg1="${result.phpcs}" arg2="0"/>
                     </not>
                 </or>
             </condition>

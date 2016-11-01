@@ -116,4 +116,3 @@ class EmployeeLanguage
         return $this;
     }
 }
-

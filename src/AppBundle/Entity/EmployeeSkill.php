@@ -178,4 +178,3 @@ class EmployeeSkill
         return $this;
     }
 }
-

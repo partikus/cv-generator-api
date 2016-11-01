@@ -237,7 +237,7 @@ class Employee
 
     public function addSkill(EmployeeSkill $employeeSkill)
     {
-        if ( ! $this->skills->contains($employeeSkill)) {
+        if (!$this->skills->contains($employeeSkill)) {
             $employeeSkill->setEmployee($this);
             $this->skills->add($employeeSkill);
         }
@@ -263,11 +263,11 @@ class Employee
 
     public function addLanguage(EmployeeLanguage $language)
     {
-        $exists = $this->languages->filter(function(EmployeeLanguage $item) use ($language) {
+        $exists = $this->languages->filter(function (EmployeeLanguage $item) use ($language) {
             return $item->getLanguage()->getIso3() === $language->getLanguage()->getIso3();
         });
 
-        if ( count($exists) === 0 ) {
+        if (count($exists) === 0) {
             $language->setEmployee($this);
             $this->languages->add($language);
         }
@@ -285,7 +285,7 @@ class Employee
 
     public function addProject(Project $project)
     {
-        if ( ! $this->projects->contains($project)) {
+        if (!$this->projects->contains($project)) {
             $project->setEmployee($this);
             $this->projects->add($project);
         }

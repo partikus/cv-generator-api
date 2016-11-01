@@ -39,6 +39,5 @@ class Receiver
         $openedFile = $file->openFile('w+');
         $openedFile->fwrite(base64_decode($data['body']));
         $this->storage->saveCvFileFor($employee->getUsername(), $data['id'], $file);
-
     }
 }

@@ -10,13 +10,11 @@ use Symfony\Component\HttpFoundation\Response;
 class ApiController extends Controller
 {
     /**
-     *
-     *
      * @param Form $form
      *
      * @return array
      */
-    protected function getFormErrorsAsArray(Form $form)
+    protected function getFormErrorsAsArray(Form $form) : array
     {
         $errors = array();
 
@@ -37,8 +35,6 @@ class ApiController extends Controller
     }
 
     /**
-     *
-     *
      * @param array $content
      * @param int $code
      *
@@ -50,8 +46,6 @@ class ApiController extends Controller
     }
 
     /**
-     *
-     *
      * @param array $content
      * @param int $code
      *
@@ -63,8 +57,6 @@ class ApiController extends Controller
     }
 
     /**
-     *
-     *
      * @param array $content
      * @param int $code
      *
@@ -85,8 +77,6 @@ class ApiController extends Controller
     }
 
     /**
-     *
-     *
      * @param Request $request
      * @param Form $form
      */

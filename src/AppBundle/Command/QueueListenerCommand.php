@@ -12,7 +12,8 @@ class QueueListenerCommand extends ContainerAwareCommand
 {
     public function configure()
     {
-        $this->setName('queue:work');
+        $this->setName('queue:work')
+            ->setDescription('Run queue to create pdf.');
     }
 
     public function execute(InputInterface $input, OutputInterface $output)
@@ -35,7 +36,6 @@ class QueueListenerCommand extends ContainerAwareCommand
 
             $receiver->receive($job);
             $pheanstalk->delete($job);
-
         } while (1);
     }
 }

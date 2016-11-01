@@ -27,7 +27,6 @@ class EmployeeSkillType extends AbstractType
         $builder->add('skill', EntityType::class, [
             'class' => Skill::class,
         ]);
-
     }
 
     public function configureOptions(OptionsResolver $resolver)
