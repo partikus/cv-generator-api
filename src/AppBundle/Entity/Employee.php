@@ -82,13 +82,19 @@ class Employee
 
     /**
      * @var ArrayCollection|EmployeeSkill[]
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\EmployeeSkill", cascade={"ALL"}, mappedBy="employee", orphanRemoval=true)
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\EmployeeSkill", cascade={"ALL"},
+     *     mappedBy="employee", orphanRemoval=true
+     * )
      */
     private $skills;
 
     /**
      * @var Language
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\EmployeeLanguage", cascade={"ALL"}, mappedBy="employee", orphanRemoval=true)
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\EmployeeLanguage", cascade={"ALL"},
+     *     mappedBy="employee", orphanRemoval=true
+     * )
      */
     private $languages;
 

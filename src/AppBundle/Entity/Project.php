@@ -78,7 +78,10 @@ class Project
 
     /**
      * @var ArrayCollection|ProjectSkill[]
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectSkill", cascade={"ALL"}, mappedBy="project", orphanRemoval=true)
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\ProjectSkill", cascade={"ALL"},
+     *     mappedBy="project", orphanRemoval=true
+     * )
      */
     private $skills;
 
